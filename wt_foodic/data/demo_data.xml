@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="foodics_tax_group" model="account.tax.group">
+            <field name="name">Foodics</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        
+        <record id="foodic_discount" model="product.product">
+            <field name="name">Foodic Discount</field>
+            <field name="categ_id" ref="point_of_sale.product_category_pos"/>
+            <field name="list_price">0</field>
+            <field name="standard_price">0</field>
+            <field name="available_in_pos">False</field>
+            <field name="taxes_id" eval="[(5,)]"/>
+        </record>
+
+        <record id="foodic_additional_cost" model="product.product">
+            <field name="name">Foodic Additional Cost</field>
+            <field name="categ_id" ref="point_of_sale.product_category_pos"/>
+            <field name="list_price">0</field>
+            <field name="standard_price">0</field>
+            <field name="taxes_id" eval="[(5,)]"/>
+            <field name="available_in_pos">False</field>
+        </record>
+
+        <record id="foodic_tip_product" model="product.product">
+            <field name="name">Foodic Tips</field>
+            <field name="categ_id" ref="point_of_sale.product_category_pos"/>
+            <field name="default_code">TIPS</field>
+            <field name="weight">0.01</field>
+            <field name="available_in_pos">False</field>
+            <field name="taxes_id" eval="[(5,)]"/>
+        </record>
+
+        <record id="foodic_rounding_amount" model="product.product">
+            <field name="name">Rounding Amount</field>
+            <field name="categ_id" ref="point_of_sale.product_category_pos"/>
+            <field name="available_in_pos">False</field>
+            <field name="taxes_id" eval="[(5,)]"/>
+        </record>
+    </data>
+</odoo>

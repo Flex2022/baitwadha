@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_view_pos_config_form" model="ir.ui.view">
+        <field name="name">inherit.view.pos.config.form</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='other_devices']" position="after">
+                <h2>Foodic</h2>
+                    <div class="row mt16 o_settings_container" id="foodic">
+                       <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="foodic_branch_id"/>
+                                <field name="foodic_branch_id"/>
+                            </div>
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="opening_from"/>
+                                <field name="opening_from"/>
+                            </div>
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="phone"/>
+                                <field name="phone"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" id="foodic_connector">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="opening_to"/>
+                                <field name="opening_to"/>
+                            </div>
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="reference"/>
+                                <field name="reference"/>
+                            </div>
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="name_localized"/>
+                                <field name="name_localized"/>
+                            </div>
+                        </div>
+                    </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

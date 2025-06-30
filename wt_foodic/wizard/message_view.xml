@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Message Wizard -->
+        <record id="pop_message_wizard_view_form" model="ir.ui.view">
+            <field name="name">pop.message.form</field>
+            <field name="model">pop.message</field>
+            <field name="arch" type="xml">
+                <form string="Message">
+                    <div>
+                    <field name="name" nolabel="1"/>  
+                    </div> 
+                    <footer>
+                       <button string="Close" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

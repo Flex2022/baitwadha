@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_pos_form_extended" model="ir.ui.view">
+        <field name="name">view.pos.pos.form.extended</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='notes']" position="after">
+                <page name="foodics" string="Foodics">
+                    <group>
+                        <group string="Foodic Order Information">
+                            <field name="cashier"/>
+                            <field name="foodic_order_ref"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='full_product_name']" position="before">
+                <field name='is_void'/>
+                <field name='is_returned'/>
+            </xpath>
+            <xpath expr="//field[@name='discount']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='discount']" position="after">
+                <field name='foodic_discount'/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_form_extended" model="ir.ui.view">
+        <field name="name">purchase.order.form.extended</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
+                <page string="Foodics" name="foodics_info">
+                    <separator string="Foodics Information"/>
+                    <group>
+                        <field name="foodic_order_id"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

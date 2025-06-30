@@ -1,0 +1,18 @@
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_product_product_form_view" model="ir.ui.view">
+        <field name="name">product.template.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="point_of_sale.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='pos']" position="inside">
+                <group name="foodics">
+                    <separator string="Foodics Data"/>
+                    <field name="foodic_product_id"/>
+                    <field name="name_localized"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+ -->

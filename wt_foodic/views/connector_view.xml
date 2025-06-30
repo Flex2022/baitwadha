@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- <record id="foodics_connector_list_view" model="ir.ui.view">
+        <field name="name">foodics.connector.list.view</field>
+        <field name="model">foodics.connector</field>
+        <field name="arch" type="xml">
+            <list string="Foodics Connector">
+                <field name="name"/>
+                <field name="import_option"/>
+                <field name="data_access_url"/>
+                <field name="order_date"/>
+            </list>
+        </field>
+    </record> -->
+
+    <record id="foodics_connector_list_view" model="ir.ui.view">
+        <field name="name">foodics.connector.list.view</field>
+        <field name="model">foodics.connector</field>
+        <field name="arch" type="xml">
+            <list string="Foodics Connector">
+                <field name="business_name"/>
+                <field name="user_name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="foodics_connector_form_view" model="ir.ui.view">
+        <field name="name">foodics.connector.form.view</field>
+        <field name="model">foodics.connector</field>
+        <field name="arch" type="xml">
+            <form string="Foodics Connector">
+                    <header>
+                        <button name="authenticate" string="Authenticate"
+                            modifiers="'invisible':[('state', '=', 'authenticated')]"
+                            type="object"/>
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="authenticate,authenticated"/>
+                    </header>
+                <sheet>
+                    <div class="oe_title oe_inline">
+                        <header>
+                            <h1>
+                                <field name="business_name"/>
+                            </h1>
+                        </header>
+                    </div>
+                    <!-- <separator string="User Information"
+                        attrs="{'invisible': [('state', '=', 'authenticate')]}"/> -->
+                    <group>
+                        <field name='environment' required='1' modifiers="'invisible'=[('state', '=', 'authenticated')]"/>
+                        <field name='url' invisible='1'/>
+                        <field name="user_name"/>
+                        <field name="email"
+                               modifiers="'invisible':[('state', '=', 'authenticate')]"/>
+                    </group>
+                    <!-- <separator string="Authentication Information"
+                            attrs="{'invisible': [('state', '=', 'authenticate')]}"/> -->
+                    <group>
+                        <field name="access_token" style='word-break: break-all;'
+                               modifiers="'invisible':[('state', '=', 'authenticated')]"/>
+                        <!-- <field name="access_token" style='word-break: break-all;'/> -->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_foodics_connector" model="ir.actions.act_window">
+        <field name="name">Foodics Connector</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">foodics.connector</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Main Menus -->
+    <menuitem id="foodics_connector_menu_root"
+            name="Foodics Connector"
+            web_icon="wt_foodic,static/description/foodics.png"
+            sequence="1"/>
+
+    <menuitem id="foodics_connector_menu"
+            name="Connector"
+            parent="wt_foodic.foodics_connector_menu_root"
+            action="action_foodics_connector"
+            sequence="1"/>
+</odoo>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_foodic_operation_form" model="ir.ui.view">
+            <field name="name">view.foodic.operation.form</field>
+            <field name="model">foodic.operation</field>
+            <field name="arch" type="xml">
+                <form string="foodic Operations">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="foodic_instance_id" required="1"
+                                    domain="[('state', '=', 'authenticated')]" 
+                                    options="{'no_open': True, 'no_create': True, 
+                                    'no_create_edit': True}"/>
+                                <field name="from_date"
+                                    invisible="operation != 'sync_orders'"/>
+                            </group>
+                            <group>
+                                <field name="operation"/>
+                                <field name="order_reference" 
+                                    invisible="operation != 'specific_orders'"/>
+                            </group>
+                        </group>
+                        <footer>
+                            <button name="foodic_execute" string="Execute"
+                                    type="object"
+                                    class="oe_highlight"/>
+                            <button string="Close" class="oe_highlight" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_foodic_operation" model="ir.actions.act_window">
+            <field name="name">Foodic Operations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">foodic.operation</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="wt_foodic.view_foodic_operation_form"/>
+        </record>
+
+        <menuitem name="Operations" id="menu_foodic_operation" 
+            parent="wt_foodic.foodics_connector_menu_root" 
+            action="action_foodic_operation"/>
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_foodics_connector,access.foodics.connector,model_foodics_connector,base.group_user,1,1,1,1
+access_pop_message,access.pop.message,model_pop_message,base.group_user,1,1,1,1
+access_foodic_operation,access.foodic.operation,model_foodic_operation,base.group_user,1,1,1,1
