@@ -51,8 +51,8 @@
                         <field name='environment' required='1' modifiers="'invisible'=[('state', '=', 'authenticated')]"/>
                         <field name='url' invisible='1'/>
                         <field name="user_name"/>
-                        <field name="email"
-                               modifiers="'invisible':[('state', '=', 'authenticate')]"/>
+                        <field name="email" modifiers="'invisible':[('state', '=', 'authenticate')]"/>
+                        <field name="product_timestamp"/>
                     </group>
                     <!-- <separator string="Authentication Information"
                             attrs="{'invisible': [('state', '=', 'authenticate')]}"/> -->
