@@ -1,5 +1,6 @@
 import requests
 import datetime
+import pytz
 from odoo import fields, models, api, _
 from odoo.exceptions import UserError
 import json
@@ -149,15 +150,20 @@ class FoodicsConnector(models.Model):
                 purchase_order.set_orders_to_odoo(res)
 
     def get_orders_methods(self, from_date=None):
+        scheduled_user = self.env.user
+        user_tz_name = scheduled_user.tz or 'UTC'
+        user_tz = pytz.timezone(user_tz_name)
+        now_user = datetime.datetime.now(user_tz)
+
         if not from_date and not self.from_date:
-            from_date = (datetime.datetime.now() - relativedelta(years=1000)).date().strftime('%Y-%m-%d')
+            from_date = (now_user - relativedelta(years=1000)).date().strftime('%Y-%m-%d')
         elif from_date:
             from_date = (from_date - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
         else:
             from_date = self.from_date.strftime('%Y-%m-%d')
         
         self.from_date = from_date
-        to_date = (datetime.datetime.now().date() + datetime.timedelta(days=1)).strftime('%Y-%m-%d')
+        to_date = (now_user.date() + datetime.timedelta(days=1)).strftime('%Y-%m-%d')
         url = self.url + "/v5/orders?include=branch,charges.charge,charges.taxes,discount,customer,products.product,payments,payments.paymentMethod,products.taxes,creator,products.options.modifierOption&sort=reference&page={}&filter[business_date_after]={}&filter[business_date_before]={}"
         # url = self.url + "/v5/orders?include=branch,charges,customer,products.product,payments,payments.paymentMethod,products.taxes,creator,products.options.modifierOption&sort=reference&page={}&filter[status]=5"
         # url = self.url + "/v5/orders?include=branch,charges.charge,discount,charges.taxes,discount,customer,products.product,payments,payments.paymentMethod,products.taxes,creator,products.options.modifierOption&sort=reference&page={}&filter[reference]=36954"
@@ -178,7 +184,7 @@ class FoodicsConnector(models.Model):
                     self.page = page_no
                     Order.set_orders_to_odoo(res, to_date)
                 self.page = 1
-                self.from_date = (datetime.datetime.now().date() - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
+                self.from_date = (now_user.date() - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
             return self.success_popup('Orders')
 
     def get_specific_orders(self, order_references):
