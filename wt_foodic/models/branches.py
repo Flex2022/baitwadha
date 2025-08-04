@@ -58,7 +58,7 @@ class PosConfig(models.Model):
                     session.update_closing_control_state_session('')
                     rec._cr.commit()
                     bankPaymentMethodDiffPairs = []
-                    bank_payment_methods = filter(lambda pm: pm.get('type') == 'bank', res.get('other_payment_methods'))
+                    bank_payment_methods = filter(lambda pm: pm.get('type') == 'bank', res.get('other_payment_methods', {}))
                     if bank_payment_methods:
                         bankPaymentMethodDiffPairs = list(map(lambda pm: [pm.get('id'), 0] ,bank_payment_methods))
                     response = session.close_session_from_ui(bankPaymentMethodDiffPairs)
